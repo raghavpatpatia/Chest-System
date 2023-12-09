@@ -25,6 +25,18 @@ public class ChestService : Singleton<ChestService>
         }
     }
 
+    public void AddCurrency(int coins, int gems)
+    {
+        CurrencyManager.Instance.AddCoins(coins);
+        CurrencyManager.Instance.AddGems(gems);
+    }
+
+    public void DestroyChest(Controller controller)
+    {
+        chestControllerList.Remove(controller);
+        Destroy(controller.view.gameObject);
+    }
+
     private void OnDestroy()
     {
         Events.Instance.CreateChest -= GenerateRandomChest;

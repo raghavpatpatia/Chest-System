@@ -5,11 +5,15 @@ public class View : MonoBehaviour
 {
     public Controller controller { get; private set; }
     [SerializeField] public Image chestImage;
-    [SerializeField] public Sprite openedChest;
-    [SerializeField] public Sprite closedChest;
+    [SerializeField] private Sprite openedChest;
+    [SerializeField] private Sprite closedChest;
+
+    private Button changeState;
 
     private void Start()
     {
+        changeState = GetComponent<Button>();
+        changeState.onClick.AddListener(OpenedChest);
         SetChestImage(closedChest);
     }
 
@@ -21,5 +25,11 @@ public class View : MonoBehaviour
     public void SetChestImage(Sprite sprite)
     {
         controller.SetChestImage(sprite);
+    }
+
+    private void OpenedChest()
+    {
+        SetChestImage(openedChest);
+        controller.OpenedChest();
     }
 }

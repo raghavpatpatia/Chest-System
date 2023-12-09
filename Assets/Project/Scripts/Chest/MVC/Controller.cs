@@ -17,4 +17,12 @@ public class Controller
     {
         view.chestImage.sprite = sprite;
     }
+
+    public void OpenedChest()
+    {
+        int coins = Random.Range(model.minCoins, model.maxCoins);
+        int gems = Random.Range(model.minGems, model.maxGems);
+        ChestService.Instance.AddCurrency(coins, gems);
+        ChestService.Instance.DestroyChest(this);
+    }
 }

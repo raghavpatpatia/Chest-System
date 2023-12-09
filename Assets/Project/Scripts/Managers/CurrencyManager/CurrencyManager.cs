@@ -4,8 +4,8 @@ public class CurrencyManager : Singleton<CurrencyManager>
 {
     private int totalCoins;
     private int totalGems;
-    [SerializeField] private int coins;
-    [SerializeField] private int gems;
+    [SerializeField] private int coins = 1000;
+    [SerializeField] private int gems = 20;
     protected override void Awake()
     {
         base.Awake();
