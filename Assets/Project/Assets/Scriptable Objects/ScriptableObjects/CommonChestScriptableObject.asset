@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de5c64ea10b7c6847a116a2037fc1c00, type: 3}
+  m_Name: CommonChestScriptableObject
+  m_EditorClassIdentifier: 
+  chestView: {fileID: 1842014840756519253, guid: 53c2d0520c9132c45b8933cd7045bce4, type: 3}
+  chestType: 0
+  minCoins: 100
+  maxCoins: 200
+  minGems: 10
+  maxGems: 20
+  time: 30
