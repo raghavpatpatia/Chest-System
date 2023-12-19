@@ -8,14 +8,22 @@ public class Events : Singleton<Events>
         base.Awake();
     }
 
-    public event Action<Transform> CreateChest;
+    public event Action<Controller> OnChestClicked;
+    public event Action OnSlotsFull;
     public event Action<int> CoinsUpdate;
     public event Action<int> GemsUpdate;
+    public event Action OnQueueFull;
 
-    public void InvokeCreateChest(Transform transform)
+    public void InvokeSlotsFull()
     {
-        CreateChest?.Invoke(transform);
+        OnSlotsFull?.Invoke();
     }
+
+    public void InvokeOnQueueFull()
+    {
+        OnQueueFull?.Invoke();
+    }
+
     public void InvokeCoinsUpdate(int amount)
     {
         CoinsUpdate?.Invoke(amount);
@@ -23,5 +31,10 @@ public class Events : Singleton<Events>
     public void InvokeGemsUpdate(int amount)
     {
         GemsUpdate?.Invoke(amount);
+    }
+
+    internal void InvokeOnChestClicked(Controller controller)
+    {
+        OnChestClicked?.Invoke(controller);
     }
 }

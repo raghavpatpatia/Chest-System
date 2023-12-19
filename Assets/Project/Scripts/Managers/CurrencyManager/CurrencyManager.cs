@@ -2,8 +2,8 @@
 
 public class CurrencyManager : Singleton<CurrencyManager>
 {
-    private int totalCoins;
-    private int totalGems;
+    public int totalCoins { get; private set; }
+    public int totalGems { get; private set; }
     [SerializeField] private int coins = 1000;
     [SerializeField] private int gems = 20;
     protected override void Awake()
@@ -20,31 +20,33 @@ public class CurrencyManager : Singleton<CurrencyManager>
     }
 
 
-    public void AddCoins(int amount)
+    private void AddCoins(int amount)
     {
         totalCoins += amount;
         Events.Instance.InvokeCoinsUpdate(totalCoins);
     }
 
-    public void AddGems(int amount)
+    private void AddGems(int amount)
     {
         totalGems += amount;
         Events.Instance.InvokeGemsUpdate(totalGems);
     }
 
-    public bool RemoveCoins(int amount)
+    public void RemoveCoins(int amount)
     {
-        if (totalCoins - amount < 0) return false;
         totalCoins -= amount;
         Events.Instance.InvokeCoinsUpdate(totalGems);
-        return true;
     }
 
-    public bool RemoveGems(int amount)
+    public void RemoveGems(int amount)
     {
-        if (totalGems - amount < 0) return false;
         totalGems -= amount;
         Events.Instance.InvokeGemsUpdate(totalGems);
-        return true;
+    }
+
+    public void AddCurrency(int coins, int gems)
+    {
+        AddCoins(coins);
+        AddGems(gems);
     }
 }

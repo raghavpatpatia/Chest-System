@@ -1,45 +1,51 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ChestService : Singleton<ChestService>
 {
     [SerializeField] private ChestScriptableObjectList chestList;
-    private Controller chestController;
-    private List<Controller> chestControllerList = new List<Controller>();
     protected override void Awake()
     {
         base.Awake();
     }
 
-    private void Start()
-    {
-        Events.Instance.CreateChest += GenerateRandomChest;
-    }
-
-    public void GenerateRandomChest(Transform transform)
-    {
-        if (chestControllerList.Count <= 4)
-        {
-            chestController = new Controller(chestList.list[Random.Range(0, chestList.list.Length)], transform);
-            chestControllerList.Add(chestController);
-        }
-    }
-
-    public void AddCurrency(int coins, int gems)
-    {
-        CurrencyManager.Instance.AddCoins(coins);
-        CurrencyManager.Instance.AddGems(gems);
-    }
-
     public void DestroyChest(Controller controller)
     {
-        chestControllerList.Remove(controller);
         Destroy(controller.view.gameObject);
     }
 
-    private void OnDestroy()
+    public void SpawnChest()
     {
-        Events.Instance.CreateChest -= GenerateRandomChest;
+        for (int i = 0; i < ChestSlotManager.Instance.chestSlots.Length; i++)
+        {
+            ChestSlot slot = ChestSlotManager.Instance.chestSlots[i];
+            if (slot.slotState == ChestSlotState.Empty)
+            {
+                ChestSlotManager.Instance.SetSlotState(slot, ChestSlotState.Filled);
+                GenerateRandomChest(slot);
+                break;
+            }
+            if (i == ChestSlotManager.Instance.chestSlots.Length - 1)
+            {
+                Events.Instance.InvokeSlotsFull();
+            }
+        }
+    }
+
+    private void GenerateRandomChest(ChestSlot slot)
+    {
+        int randomRange = Random.Range(0, chestList.list.Length);
+        ChestScriptableObject obj = chestList.list[randomRange];
+
+        Model model = new Model(obj);
+        View view = GameObject.Instantiate<View>(model.ChestView, slot.slot.transform);
+        view.gameObject.GetComponent<RectTransform>().localPosition = Vector3.zero;
+
+        Controller newChest = new Controller(model, view);
+        view.SetController(newChest);
+        model.SetController(newChest);
+        slot.controller = newChest;
+        newChest.SetStateMachine(newChest);
+        newChest.stateMachine.ChangeState(States.Locked);
     }
 
 }

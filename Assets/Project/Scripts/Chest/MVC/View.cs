@@ -1,19 +1,17 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class View : MonoBehaviour 
+public class View : MonoBehaviour, IPointerClickHandler
 {
     public Controller controller { get; private set; }
     [SerializeField] public Image chestImage;
-    [SerializeField] private Sprite openedChest;
+    [SerializeField] public Sprite openedChest;
     [SerializeField] private Sprite closedChest;
-
-    private Button changeState;
 
     private void Start()
     {
-        changeState = GetComponent<Button>();
-        changeState.onClick.AddListener(OpenedChest);
         SetChestImage(closedChest);
     }
 
@@ -27,9 +25,8 @@ public class View : MonoBehaviour
         controller.SetChestImage(sprite);
     }
 
-    private void OpenedChest()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        SetChestImage(openedChest);
-        controller.OpenedChest();
+        Events.Instance.InvokeOnChestClicked(controller);
     }
 }

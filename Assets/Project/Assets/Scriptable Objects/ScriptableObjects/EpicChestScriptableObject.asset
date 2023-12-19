@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5c64ea10b7c6847a116a2037fc1c00, type: 3}
   m_Name: EpicChestScriptableObject
   m_EditorClassIdentifier: 
-  chestView: {fileID: -7121924056100106126, guid: a9036f2bec166a4488dbfe03e3603892, type: 3}
-  chestType: 2
-  minCoins: 600
-  maxCoins: 800
-  minGems: 45
-  maxGems: 60
-  time: 900
+  Chest_Coins_Range: {x: 600, y: 800}
+  Chest_Gems_Range: {x: 45, y: 60}
+  Unlock_Time: 3600
+  Gems_To_Unlock: 6
+  Max_Unlock_Time: 3600
+  Max_Gems_To_Unlock: 6
+  ChestView: {fileID: -7121924056100106126, guid: a9036f2bec166a4488dbfe03e3603892, type: 3}
+  Chest_Type: 2

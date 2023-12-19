@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5c64ea10b7c6847a116a2037fc1c00, type: 3}
   m_Name: CommonChestScriptableObject
   m_EditorClassIdentifier: 
-  chestView: {fileID: 1842014840756519253, guid: 53c2d0520c9132c45b8933cd7045bce4, type: 3}
-  chestType: 0
-  minCoins: 100
-  maxCoins: 200
-  minGems: 10
-  maxGems: 20
-  time: 30
+  Chest_Coins_Range: {x: 100, y: 200}
+  Chest_Gems_Range: {x: 10, y: 20}
+  Unlock_Time: 900
+  Gems_To_Unlock: 2
+  Max_Unlock_Time: 900
+  Max_Gems_To_Unlock: 2
+  ChestView: {fileID: 1842014840756519253, guid: 53c2d0520c9132c45b8933cd7045bce4, type: 3}
+  Chest_Type: 0

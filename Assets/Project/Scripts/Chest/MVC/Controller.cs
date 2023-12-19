@@ -4,25 +4,23 @@ public class Controller
 {
     public Model model { get; private set; }
     public View view { get; private set; }
-    public Controller(ChestScriptableObject chestScriptableObject, Transform transform)
+    public ChestStateMachine stateMachine { get; private set; }
+    public Controller(Model model, View view)
     {
-        this.model = new Model(chestScriptableObject, this);
-        this.view = GameObject.Instantiate<View>(chestScriptableObject.chestView);
-        this.view.SetController(this);
-
-        view.transform.SetParent(transform, false);
+        this.model = model;
+        this.view = view;
     }
-
+    public void SetStateMachine(Controller controller)
+    {
+        stateMachine = new ChestStateMachine(controller);
+    }
     public void SetChestImage(Sprite sprite)
     {
         view.chestImage.sprite = sprite;
     }
-
-    public void OpenedChest()
+    public void ChangeUnlockTimer(float time)
     {
-        int coins = Random.Range(model.minCoins, model.maxCoins);
-        int gems = Random.Range(model.minGems, model.maxGems);
-        ChestService.Instance.AddCurrency(coins, gems);
-        ChestService.Instance.DestroyChest(this);
+        model.UNLOCK_TIME = Mathf.Max(model.UNLOCK_TIME - time, 0);
+        model.GEMS_TO_UNLOCK = Mathf.Ceil((model.UNLOCK_TIME / model.MAX_UNLOCK_TIME) * model.MAX_GEMS_TO_UNLOCK);
     }
 }
