@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec9da2cc49263544dbeaba8bff5aadfc, type: 3}
+  m_Name: ChestSO
+  m_EditorClassIdentifier: 
+  Chests:
+  - ChestType: 0
+    ChestClosedImage: {fileID: 21300000, guid: dfcb6102a7798854197abc3eaa179fb3, type: 3}
+    ChestOpenedImage: {fileID: 21300000, guid: cb147c24a775c8e48ab6af3f2c86f1ef, type: 3}
+    UnlockTime: 60
+    Coins: {x: 10, y: 20}
+    Gems: {x: 10, y: 30}
+  - ChestType: 1
+    ChestClosedImage: {fileID: 21300000, guid: 73eacfd8f104d4f4c84b1f2b184b436b, type: 3}
+    ChestOpenedImage: {fileID: 21300000, guid: e43e39a0edd3bd24da07145f807afa3e, type: 3}
+    UnlockTime: 1800
+    Coins: {x: 20, y: 100}
+    Gems: {x: 30, y: 50}
+  - ChestType: 2
+    ChestClosedImage: {fileID: 21300000, guid: 6823439548372b44caeb917f7963ea6d, type: 3}
+    ChestOpenedImage: {fileID: 21300000, guid: 231e89966c9158d4d80946e34198c2d8, type: 3}
+    UnlockTime: 3600
+    Coins: {x: 100, y: 200}
+    Gems: {x: 50, y: 100}
+  - ChestType: 3
+    ChestClosedImage: {fileID: 21300000, guid: b4e77749991b89849ba82b1018412424, type: 3}
+    ChestOpenedImage: {fileID: 21300000, guid: 75d76997b67c3d3438c2818012cf6e75, type: 3}
+    UnlockTime: 5400
+    Coins: {x: 200, y: 500}
+    Gems: {x: 100, y: 150}
